@@ -8,8 +8,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
-	"github.com/google/go-querystring/query"
 )
 
 // RestClient manages the REST interface for a calling user.
