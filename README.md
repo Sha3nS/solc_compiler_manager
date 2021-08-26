@@ -36,7 +36,7 @@ solc-compiler compile --scope bin,abi,hashes --name Counter v0.5.11 [path_to_fil
 --scope         指定编译的输出内容
 --name          指定编译合约
 --optimize      指定编译是否进行优化
---optimize-runs 指定编译油画参数
+--optimize-runs 指定编译优化参数
 --evm-version   指定evm版本
 详细参数请参考帮助文档
 ```
