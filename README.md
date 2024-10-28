@@ -5,7 +5,8 @@
 make install
 ```
 
-## Project Initialization```
+## Project Initialization
+```
 solc-compiler init --platform macosx-amd64/linux-amd64 -a
 ```
 
