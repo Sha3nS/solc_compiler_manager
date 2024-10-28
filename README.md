@@ -1,52 +1,55 @@
-# 提供 solc 下载管理，提供合约验证 RPC 服务
+# Provides solc download management and contract verification RPC service
 
-## 安装
+## Installation
 ```
 make install
 ```
 
-## 项目初始化
-```
+## Project Initialization```
 solc-compiler init --platform macosx-amd64/linux-amd64 -a
 ```
 
-初始化需要指定项目运行平台，初始化可以指定是否下载运行平台所有的 `solc` 版本。
 
-可以重复初始化，以覆盖当前配置，初始化过程中出现文件下载失败的情况，可以：
+Initialization requires specifying the project runtime platform. During initialization, you can specify whether to download all `solc` versions for the runtime platform.
+
+You can reinitialize to override the current configuration. If file downloads fail during initialization, you can:
+
 ```
-// 重试初始化，该过程会自动跳过已下载的编译器版本
+// Retry initialization - this process will automatically skip already downloaded compiler versions
+
 solc-compiler init --platform macosx-amd64 -a
 
-// 指定版本，使用可执行程序手动获取
+// Manually fetch a specific version using the executable
+
 solc-compiler fetch v0.8.0
 ```
 
-## 管理编译器版本
+## Managing Compiler Versions
 ```
-// 下载
+// Download
 solc-compiler fetch v0.8.0
 
-// 删除
+// Delete
 solc-compiler delete v0.8.0
 ```
 
-## 编译 solidity 文件
+## Compiling Solidity Files
 ```
 solc-compiler compile --scope bin,abi,hashes --name Counter v0.5.11 [path_to_file] --optimize --optimize-runs 200 --evm-version "default"
---scope         指定编译的输出内容
---name          指定编译合约
---optimize      指定编译是否进行优化
---optimize-runs 指定编译优化参数
---evm-version   指定evm版本
-详细参数请参考帮助文档
+--scope         Specify compilation output content
+--name          Specify contract to compile
+--optimize      Specify whether to optimize compilation
+--optimize-runs Specify optimization parameter
+--evm-version   Specify EVM version
+For detailed parameters, please refer to the help documentation
 ```
 
-## 启动 RPC 服务
+## Starting the RPC Server
 ```
 solc-compiler rest-server
-提供以下接口：
+Provides the following endpoints:
 
-contract_ping: 心跳
+contract_ping: Heartbeat
 
 curl --location --request POST 'http://127.0.0.1:1212' \
 --header 'Content-Type: application/json' \
@@ -57,7 +60,7 @@ curl --location --request POST 'http://127.0.0.1:1212' \
     "id": 1
 }'
 
-contract_verify: 返回 ABI、编译的binary hex string
+contract_verify: Returns ABI and compiled binary hex string
 
 curl --location --request POST 'http://127.0.0.1:1212' \
 --header 'Content-Type: application/json' \
@@ -77,7 +80,7 @@ curl --location --request POST 'http://127.0.0.1:1212' \
     "id": 1
 }'
 
-contract_listVersions: 返回当前平台所支持的编译器版本
+contract_listVersions: Returns supported compiler versions for the current platform
 
 curl --location --request GET 'http://127.0.0.1:1212' \
 --header 'Content-Type: application/json' \
